@@ -1,0 +1,129 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""category entity"""
+type Category {
+  created_at: DateTime!
+  id: Int!
+  name: String!
+  posts: [Post!]!
+}
+
+input CreateCategoryInput {
+  name: String!
+}
+
+input CreatePostCommentInput {
+  categoryId: Int
+  content: String!
+  parentId: Int!
+  title: String!
+}
+
+input CreatePostInput {
+  categoryId: Int!
+  content: String!
+  title: String!
+}
+
+input CreateUserInput {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DownvoteDto {
+  postId: Int!
+}
+
+input LoginInput {
+  password: String!
+  username: String!
+}
+
+type LoginResponse {
+  access_token: String!
+  user: User!
+}
+
+type Mutation {
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createComment(input: CreatePostCommentInput!): Post!
+  createPost(input: CreatePostInput!): Post!
+  createUser(createUserInput: CreateUserInput!): User!
+  deleteCategory(id: Int!): Category!
+  deletePost(id: ID!): Boolean!
+  downvote(downvoteInput: DownvoteDto!): Post!
+  login(loginInput: LoginInput!): LoginResponse!
+  setRole(setRoleInput: SetroleInput!): User!
+  signup(signupInput: SignupInput!): User!
+  updatePost(input: UpdatePostInput!): Post!
+  upvote(upvoteInput: UpvoteDto!): Post!
+}
+
+"""Post object"""
+type Post {
+  author: User!
+  category: Category!
+  comments: [Post!]!
+  content: String!
+  created_at: DateTime!
+  downvotes: Int!
+  id: Int!
+  parent: Post
+  title: String!
+  updated_at: DateTime!
+  upvotes: Int!
+}
+
+type Query {
+  category(id: Int!): Category!
+  getAllCategory: [Category!]!
+  getPost(id: ID!): Post!
+  getPosts: [Post!]!
+  user(username: String!): User!
+  users: [User!]!
+}
+
+type Roles {
+  created_at: DateTime!
+  id: Int!
+  role: String!
+}
+
+input SetroleInput {
+  id: Int!
+  role: String!
+}
+
+input SignupInput {
+  password: String!
+  username: String!
+}
+
+type Subscription {
+  listenComment(postId: ID!): Post!
+}
+
+input UpdatePostInput {
+  content: String!
+  id: ID!
+}
+
+input UpvoteDto {
+  postId: Int!
+}
+
+type User {
+  created_at: DateTime!
+  id: Int!
+  posts: [Post!]!
+  roles: [Roles!]!
+  updated_at: DateTime!
+  username: String!
+}

@@ -19,12 +19,12 @@ These instructions will help you set up and run the forum API server and its dep
    ```bash
    git clone https://github.com/your-username/forum-api.git
    cd forum-api
-  ```
+   
 2. Create the .env file with environment variables as mentioned in .env.example
 
-3. Start the containers with docker compose
-  ```bash
-  docker-compose up
-  ```
+3. Start the containers with docker compose 
+      ```bash
+      docker-compose up
+      ```
 
 #### Graphql playground would be available at localhost:3000/graphql

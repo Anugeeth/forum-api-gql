@@ -31,8 +31,6 @@ export class UsersService {
       },
       relations
     });
-    if (!user)
-      throw new NotFoundException("User not found")
 
     return user
   }
